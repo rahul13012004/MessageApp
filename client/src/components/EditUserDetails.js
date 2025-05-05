@@ -7,26 +7,21 @@ import taost from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../redux/userSlice'
 
+const EditUserDetails = ({ onClose, user }) => {
+    const [data, setData] = useState({
+        name: user?.name,
+        profile_pic: user?.profile_pic
+    });
 
-const EditUserDetails = ({onClose,user}) => {
-    const [data,setData] = useState({
-        
-        name : user?.name,  //user?.user, 
-        profile_pic : user?.profile_pic
-    })
-    const uploadPhotoRef = useRef()
-    const dispatch = useDispatch()
+    const uploadPhotoRef = useRef();
 
-    useEffect(()=>{
-        setData((preve)=>{
-            return{
-                ...preve,
-                name : user.name,
-                profile_pic : user?.profile_pic
-                //...user
-            }
-        })
-    },[user])
+    useEffect(() => {
+        setData((prev) => ({
+            ...prev,
+            name: user?.name,
+            profile_pic: user?.profile_pic
+        }));
+    }, [user]);
 
     const handleOnChange = (e)=>{
         const { name, value } = e.target
